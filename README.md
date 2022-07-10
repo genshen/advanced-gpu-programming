@@ -21,20 +21,20 @@
 
 ## 目录
 - [ ] AMD/nvidia GPU 架构
-   - [x] [AMD GPU 架构概述](contents/AMD-gpu-arch)
-   - [x] [AMD Vega 7nm 指令集架构 (GCN5)](contents/AMD-7nm-isa)
-   - [x] [英伟达 GPU 架构概述](contents/nvidia-gpu-arch)
+   - [x] [AMD GPU 架构概述](contents/overview/AMD-gpu-arch.md)
+   - [x] [AMD Vega 7nm 指令集架构 (GCN5)](contents/overview/AMD-7nm-isa.md)
+   - [x] [英伟达 GPU 架构概述](contents/overview/nvidia-gpu-arch.md)
 - [ ] AMD GPU 汇编
-   - [x] [Introduction](contents/assembly-intro)
-   - [x] [相关寄存器](contents/assembly-registers)
-   - [x] [汇编指令](contents/assembly-instructions)
+   - [x] [Introduction](contents/assembly/intro.md)
+   - [x] [相关寄存器](contents/assembly/registers.md)
+   - [x] [汇编指令](contents/assembly/instructions.md)
 - [ ] shared memory 数据共享
-   - [ ] [bank 冲突](contents/bank-conflict)
+   - [ ] [bank 冲突](contents/shared-memory/bank-conflict.md)
 - [ ] 线程通信
    - [ ] wavefront/warp 内的线程通信
    - [x] [在条件语句中谨慎使用 `__syncthreads`](https://blog.gensh.me/cuda-warp-conmunication)
 - [ ] Debug & Profile
-   - [x] [Introduction](contents/debug-and-profile-intro)
+   - [x] [Introduction](contents/profile-debug/intro.md)
 - [ ] 访存优化相关
 - [ ] 其他优化经验
    - [x] [优化经验总结](contents/extra-opt-tips)
