@@ -33,10 +33,10 @@ GCN5 的[技术手册](https://developer.amd.com/wp-content/resources/Vega_7nm_S
 PC 就是我们传统理解的 PC 寄存器，指向内存中下一条将要执行的指令。
 
 ### V0-V255 与 S0-S103
-通用的向量寄存器和标量寄存器，[上一节](/hpc/advanced-gpu/AMD-7nm-isa)有讲到。
+通用的向量寄存器和标量寄存器，[上一节](../overview/AMD-7nm-isa)有讲到。
 
 ### LDS
-local data shared, 即共享内存的概念。[上一节](/hpc/advanced-gpu/AMD-7nm-isa)有讲到。
+local data shared, 即共享内存的概念。[上一节](../overview/AMD-7nm-isa)有讲到。
 
 ### EXEC 与 EXECZ
 即执行掩码，64 位，对应 wavefront 中的 64 个线程。

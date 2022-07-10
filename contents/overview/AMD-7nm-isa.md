@@ -2,7 +2,7 @@
 
 AMD Vega 指令集架构（或者 GCN 5）的 GPU 大概长下图这样。下面挑重点讲其中的核心部件。
 
-![gcn-vega-7nm-arch.svg](/hpc/advanced-gpu/gcn-vega-7nm-arch.svg){.align-center}
+![gcn-vega-7nm-arch.svg](images/gcn-vega-7nm-arch.svg)
 
 (原图: https://rocmdocs.amd.com/en/latest/GCN_ISA_Manuals/testdocbook.html#introduction)
 
@@ -96,11 +96,11 @@ AMD Vega 指令集架构（或者 GCN 5）的 GPU 大概长下图这样。下面
 
 在一个 CU 内部，包含 SIMD、向量/标量寄存器、LDS (local data share)，L1 cache等部件。下图描述了 CU 内部的详细情况。
 
-![vega-gpu-compute-unit.svg](/hpc/advanced-gpu/vega-gpu-compute-unit.svg){.align-center}
+![vega-gpu-compute-unit.svg](images/vega-gpu-compute-unit.svg){.align-center}
 图：一个 CU 的内部构成。（上：主要部件，下：CU 内部详细的部件构成）
 
 下图是官方的原图，基本信息和上图差不多：
-![amd_gcn_cu.jpeg](/hpc/advanced-gpu/amd_gcn_cu.jpeg)
+![amd_gcn_cu.jpeg](images/amd_gcn_cu.jpeg)
 (图片来源：https://gpuopen.com/learn/optimizing-gpu-occupancy-resource-usage-large-thread-groups/)
 
 ### SIMD
@@ -122,7 +122,8 @@ SIMD 即我们常说的单指令多数据流，这里指 GPU 中具有该功能�
 ### VGPR (向量通用寄存器)
 下图给出了更细节的关于 VGPRs 和 SGPRs 的视图。
 
-![](https://rocmdocs.amd.com/en/latest/_images/fig_2_1_vega.png)
+![](images/vega-isa-storage-overview.png)
+（图片来源：https://rocmdocs.amd.com/en/latest/_images/fig_2_1_vega.png）
 
 上面说了，64 个线程组成一个 wavefront 在一个SIMD 上面执行，
 所以，这 64 个线程都会有属于自己的向量通用寄存器。上图就很直观地将 VGPRs 分成 64 组，每组 64 个，每个寄存器大小是 32 bit 的。整个 SIMD 上，总向量通用寄存器的大小为 $256 \times 64 \times 32/8=64$ KiB。

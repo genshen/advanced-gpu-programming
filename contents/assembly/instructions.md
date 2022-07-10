@@ -82,7 +82,7 @@ s_load_dword s3, s[6:7], 0x0
 s_waitcnt lgkmcnt(0)
 ```
 扩展阅读：https://bartwronski.com/2014/03/27/gcn-two-ways-of-latency-hiding-and-wave-occupancy/ 
-备份：[gcn_–_two_ways_of_latency_hiding_and_wave_occupancy__bart_wronski.webarchive](/hpc/advanced-gpu/gcn_–_two_ways_of_latency_hiding_and_wave_occupancy__bart_wronski.webarchive)
+备份：[gcn_–_two_ways_of_latency_hiding_and_wave_occupancy__bart_wronski.webarchive](assets/gcn_–_two_ways_of_latency_hiding_and_wave_occupancy__bart_wronski.webarchive)
 
 **s_waitcnt**  
 从上面的例子，我们也可以窥探一二。s_waitcnt 指令可以等待相关计数的寄存器值（包括LGKM_CNT、VMCNT 等）变为特定的值或者比这个值更小。例如，`s_waitcnt lgkmcnt(2)`，只要 LGKM_CNT 寄存器的值变得 <= 2 就可以往下继续执行后面的指令。
