@@ -35,6 +35,7 @@
    - [x] [在条件语句中谨慎使用 `__syncthreads`](https://blog.gensh.me/cuda-warp-conmunication)
 - [ ] Debug & Profile
    - [x] [Introduction](contents/profile-debug/intro.md)
+   - [x] [占用率与性能](contents/profile-debug/occupancy.md) 
 - [ ] 访存优化相关
 - [ ] 其他优化经验
    - [x] [优化经验总结](contents/extra-opt-tips)
