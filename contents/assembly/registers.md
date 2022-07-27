@@ -7,7 +7,7 @@ GCN5 的[技术手册](https://developer.amd.com/wp-content/resources/Vega_7nm_S
 |--|--|--|--|
 | PC           | Program Counter      | 48     | Points to the memory address of the next shader instruction to execute.|
 | V0-V255      | VGPR                 | 32     | Vector general-purpose register.  |
-| S0-S103      | SGPR                 | 32     | Vector general-purpose register.  |
+| S0-S103      | SGPR                 | 32     | Scalar general-purpose register.  |
 | LDS          | Local Data Share     | 64kB   | Local data share is a scratch RAM with built-in arithmetic capabilities that allow data to be shared between threads in a workgroup.|
 | EXEC         | Execute Mask         | 64     | A bit mask with one bit per thread, which is applied to vector instructions and controls that threads execute and that ignore the instruction.           |
 | EXECZ        | EXEC is zero         | 1      | A single bit flag indicating that the EXEC mask is all zeros.       |
