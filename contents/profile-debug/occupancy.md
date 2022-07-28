@@ -22,7 +22,7 @@ GPU 为了实现计算和访存的重叠，一个 CU（英伟达的 GPU 叫 SM�
 - **理论占用率（theoretical occupancy）**：通过 kernel 所请求的资源计算出的占用率。
   （Theoretical occupancy is a calculated metric, derived from the resources requested by the kernel）
 
-相关信息来源见参考链接的 1,2,3,4。
+相关信息来源见参考链接[^1][^2][^3][^4]。
 
 ## 寄存器资源限制
 我们知道，GCN 架构下，每个 SIMD 对应 64 KiB 的通用向量通用寄存器（256*64个 32 位的寄存器）；每个 CU 共 12.5 KiB 的标量通用寄存器（800*4 个寄存器）。  
@@ -54,7 +54,7 @@ wavefron 内的线程最多可以用 256 个向量通用寄存器，且向量寄
 我们也可以给出一个标量寄存器和占用率的关系:
 
 | 申请标量寄存器数量($N_S$) | 32 | 48 | 64 | 80 | 96 |
-| -- | -- | -- | -- | -- | -- | -- |
+| -- | -- | -- | -- | -- | -- |
 | 用于存数据的寄存器数量($N_S - 16 - 6$) | 10 | 26 | 42 | 58 | 74 |
 | active wavefronts per SIMD (800/$N_S$) | 10  | 10 | 10 | 10 | 8 | 
 
@@ -63,7 +63,7 @@ wavefron 内的线程最多可以用 256 个向量通用寄存器，且向量寄
 ## 共享内存的限制
 限制条件：
 - 一个 CU 共 64 KiB 的 LDS。
-- 共享内存按 block 进行分配，且 CU 最多只能同时运行 16 个 block（不过有特例，见“核函数配置的限制”部分）。
+- 共享内存按 block 进行分配，且 CU 最多只能同时运行 16 个 block（不过有特例，见“核函数配置的限制”部分）（来源见[^1]）。
 - 每个 CU 最多同时运行 40 个 wavefront。
 
 我们在稠密矩阵乘（GEMM）、SpGEMM 或者 SpMV 等问题中，都会用 LDS 作为缓存，先把数据加载到 LDS 中，然后使用时从 LDS 中访问。LDS 的用量会影响调度进来执行的 block 数量，进而影响活跃的线程数量。 
@@ -72,7 +72,7 @@ wavefron 内的线程最多可以用 256 个向量通用寄存器，且向量寄
 
 ## 核函数配置的限制
 这里，我们重点考虑 BlockDim 的设置对占用率的影响（为了方便，这里假设线程按照一维的形式进行组织的）。
-这里还需要特别说明下，如果 BlockDim = 64，CU 最多只能同时运行 40 个 block，而非限制在 16 个（见参考链接1）。
+这里还需要特别说明下，如果 BlockDim = 64，CU 最多只能同时运行 40 个 block，而非限制在 16 个（见参考链接[^1]）。
 
 我们考虑 BlockDim = 128 的核函数配置（不考虑寄存器、LDS资源的限制），最多可以调度进来执行的 block 数量是 $\max\left(16, 40/(128/64) \right) = 16$。
 活跃的最多 wavefront 数量是 32，而非打满到 40，占用率为 32/40 = 0.8。
@@ -88,16 +88,16 @@ wavefron 内的线程最多可以用 256 个向量通用寄存器，且向量寄
 3. **提高占用率不是唯一目标**。例如，减小 LDS 用量，虽然可以提高占用率，但是有可能会降低算法的性能（如因为处理的批次会变多）。
 4. **最大化占用率，并不意味着最好的性能（性能还和访存模式、负载均衡设计、算法等有关）**
 
-## 参考链接
-1. https://radeon-compute-profiler-rcp.readthedocs.io/en/latest/occupancy.html#kernel-occupancy-for-amd-radeon-hd-7000-series-or-newer-based-on-graphics-core-next-architecture
-2. http://developer.amd.com/wordpress/media/2013/06/2620_final.pdf
-3. https://www.olcf.ornl.gov/wp-content/uploads/2019/10/ORNL_Application_Readiness_Workshop-AMD_GPU_Basics.pdf
-4. https://community.amd.com/t5/opencl/wavefront-and-kernel-occupancy/m-p/133044
-5. [Nvidia-WarpsAndOccupancy](https://developer.download.nvidia.com/CUDA/training/cuda_webinars_WarpsAndOccupancy.pdf)
-
 ## 其他
 - 一个有趣的讨论
     > If you schedule 40 workgroups of one wavefront each to each CU, then that will completely fill all the resources assuming you are not limited by other factors (such as local memory usage, regsters, etc.)  Another way to fill the CU is to schedule 10 workgroups of four wavefronts per CU.
     https://community.amd.com/t5/archives-discussions/optimizing-code-for-gcn/m-p/225385
 - 另一个 OpenCl 优化教程
 https://rocmdocs.amd.com/en/latest/Programming_Guides/Opencl-optimization.html#hiding-memory-latency-with-alu-operations 
+
+## 参考链接
+[^1]: https://radeon-compute-profiler-rcp.readthedocs.io/en/latest/occupancy.html#kernel-occupancy-for-amd-radeon-hd-7000-series-or-newer-based-on-graphics-core-next-architecture
+[^2]: http://developer.amd.com/wordpress/media/2013/06/2620_final.pdf
+[^3]: https://www.olcf.ornl.gov/wp-content/uploads/2019/10/ORNL_Application_Readiness_Workshop-AMD_GPU_Basics.pdf
+[^4]: https://community.amd.com/t5/opencl/wavefront-and-kernel-occupancy/m-p/133044
+[^5]: [Nvidia-WarpsAndOccupancy](https://developer.download.nvidia.com/CUDA/training/cuda_webinars_WarpsAndOccupancy.pdf)
