@@ -36,9 +36,19 @@
 - [ ] Debug & Profile
    - [x] [Introduction](contents/profile-debug/intro.md)
    - [x] [占用率与性能](contents/profile-debug/occupancy.md) 
+   - [x] [roofline 性能模型](contents/profile-debug/roofline.md) 
 - [ ] 访存优化相关
 - [ ] 其他优化经验
    - [x] [优化经验总结](contents/extra-opt-tips)
+
+## 推荐阅读
+除了本仓库外，笔者在撰写该系列文章时，也参考或阅读过大量的相关教材和课程。这部分资料都属于高阶点的关于 GPU优化的资料：
+
+供参考：
+- UIUC ECE 408: https://ece.illinois.edu/academics/courses/ECE408-120211, https://wiki.illinois.edu/wiki/display/ECE408/Class+Schedule, [2019-fall](https://wiki.illinois.edu/wiki/display/ECE408/Materials+from+prior+semesters#)
+- NVIDIA, CUDA C++ Best Practices Guide (CUDA BPG) https://docs.nvidia.com/cuda/cuda-c-best-practices-guide, [pdf](https://docs.nvidia.com/cuda/pdf/CUDA_C_Best_Practices_Guide.pdf)， 
+
+
 ## 协议
 本着知识共享的精神，本文档采用电子形式发布。 
 协议采用知识共享 [署名-非商业性使用-相同方式共享 BY-NC-SA 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。
