@@ -3,3 +3,4 @@ contents/overview/images/amd_gcn_cu.jpeg filter=lfs diff=lfs merge=lfs -text
 contents/overview/images/gcn-vega-7nm-arch.svg filter=lfs diff=lfs merge=lfs -text
 contents/overview/images/vega-gpu-compute-unit.svg filter=lfs diff=lfs merge=lfs -text
 contents/assembly/assets/gcn_–_two_ways_of_latency_hiding_and_wave_occupancy__bart_wronski.webarchive filter=lfs diff=lfs merge=lfs -text
+contents/profile-debug/images/roofline.png filter=lfs diff=lfs merge=lfs -text
