@@ -14,7 +14,8 @@
 
 ### HIP
 - 阿贡实验室的 HIP 的编程手册: https://www.olcf.ornl.gov/calendar/intro-to-amd-gpu-programming-with-hip
-- AMD 的相关编程资料： https://developer.amd.com/wp-content/resources/ROCm%20Learning%20Centre/chapter3/HIP-Coding-3.pdf.
+- AMD 的相关 HIP 编程教材： https://developer.amd.com/wp-content/resources/ROCm%20Learning%20Centre/chapter3/HIP-Coding-3.pdf.
+- AMD 的系列编程资料：[fundamentals-of-hip-programming](https://developer.amd.com/resources/rocm-learning-center/fundamentals-of-hip-programming/)
 - AMD 的 HIP 编程指南: https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html
 - 曙光 HIP 计算技术详解 [点击下载](/hpc/hip-programming.pdf)
 - 曙光 DCU 开发者社区：https://developer.hpccube.com/tool/
