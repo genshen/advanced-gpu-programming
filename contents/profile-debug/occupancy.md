@@ -43,9 +43,9 @@ wavefron 内的线程最多可以用 256 个向量通用寄存器，且向量寄
 标量寄存器，也是类似的情况。
 不过，还有一些细节，需要进一步明确:
 - wavefront 虽然最多可以用 112 个标量通用寄存器，但是后 6 个 SGPRs 会有特殊用途。如 VCC 寄存器用的就是用的 SGPR 106 和 SGPR 107（其实VCC就是这两个寄存器的别名），当计算过程中获
-取到了中断(trap)请求，VCC 保存中断地址。（[来源](https://rocmdocs.amd.com/en/latest/GCN_ISA_Manuals/GCN-ISA-Manuals.html#the-gpr-counting) 及[来源2](https://rocmdocs.amd.com/en/latest/GCN_ISA_Manuals/testdocbook.html#sgpr-allocation-and-storage)， 或者 GCN vega 10 nm 指令集手册 3.6.2）
+取到了中断(trap)请求，VCC 保存中断地址。（[来源](https://github.com/RadeonOpenCompute/ROCm_Documentation/blob/8bb172b33e56d01deddb4f4c13f1d1f9add0db33/GCN_ISA_Manuals/GCN-ISA-Manuals.rst#the-gpr-counting) 及[来源2](https://github.com/RadeonOpenCompute/ROCm_Documentation/blob/8bb172b33e56d01deddb4f4c13f1d1f9add0db33/GCN_ISA_Manuals/testdocbook.rst#sgpr-allocation-and-storage)， 或者 GCN vega 10 nm 指令集手册 3.6.2）
 - 此外，第 112 个寄存器也有特殊用途，因此有 4 个寄存器也没法用上（不是每个 wavefront 都用）。 因此，实际可以用的标量通用寄存器最多只有 102 个（我们编号为0～101）。
-- 当中断时，对于每个 wavefront，还需要额外的 16 个 SGPRS 用来保存 PC 和中断 handler（trap handler）等信息 （[来源](https://rocmdocs.amd.com/en/latest/GCN_ISA_Manuals/testdocbook.html#trap-and-exception-registers), 或者 GCN vega 10 nm 指令集手册的 3.10 小节）。 因此，实际可用于存储普通数据的通用寄存器最多只有 102-16=86 个。
+- 当中断时，对于每个 wavefront，还需要额外的 16 个 SGPRS 用来保存 PC 和中断 handler（trap handler）等信息 （[来源](https://github.com/RadeonOpenCompute/ROCm_Documentation/blob/8bb172b33e56d01deddb4f4c13f1d1f9add0db33/GCN_ISA_Manuals/testdocbook.rst#trap-and-exception-registers), 或者 GCN vega 10 nm 指令集手册的 3.10 小节）。 因此，实际可用于存储普通数据的通用寄存器最多只有 102-16=86 个。
 - SGRPs 以 16 个 dwards 为单位申请，这里面就包括了特殊用途的各类寄存器。
 > The last 6 of these are used for special purposes (such as VCC), and these cannot be used as general purpose scalar registers by user code.
 > The 112 case is special; here, 4 additional registers cannot be used, leaving 102 for GPR purposes.
@@ -93,7 +93,7 @@ wavefron 内的线程最多可以用 256 个向量通用寄存器，且向量寄
     > If you schedule 40 workgroups of one wavefront each to each CU, then that will completely fill all the resources assuming you are not limited by other factors (such as local memory usage, regsters, etc.)  Another way to fill the CU is to schedule 10 workgroups of four wavefronts per CU.
     https://community.amd.com/t5/archives-discussions/optimizing-code-for-gcn/m-p/225385
 - 另一个 OpenCl 优化教程
-https://rocmdocs.amd.com/en/latest/Programming_Guides/Opencl-optimization.html#hiding-memory-latency-with-alu-operations 
+https://github.com/RadeonOpenCompute/ROCm_Documentation/blob/8bb172b33e56d01deddb4f4c13f1d1f9add0db33/Programming_Guides/Opencl-optimization.rst#L1196
 
 ## 参考链接
 [^1]: https://radeon-compute-profiler-rcp.readthedocs.io/en/latest/occupancy.html#kernel-occupancy-for-amd-radeon-hd-7000-series-or-newer-based-on-graphics-core-next-architecture

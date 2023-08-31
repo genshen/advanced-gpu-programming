@@ -1,7 +1,7 @@
 # 相关寄存器
 
 GCN5 的[技术手册](https://developer.amd.com/wp-content/resources/Vega_7nm_Shader_ISA.pdf) (3.1小节)，
-或者[在线文档](https://rocmdocs.amd.com/en/latest/GCN_ISA_Manuals/testdocbook.html#testdocbook) 列出了一些相关的寄存器/存储单元。
+或者[在线文档](https://github.com/RadeonOpenCompute/ROCm_Documentation/blob/8bb172b33e56d01deddb4f4c13f1d1f9add0db33/GCN_ISA_Manuals/testdocbook.rst) 列出了一些相关的寄存器/存储单元。
 
 | Abbrev.      | Name                 | Size  (bits) | Description                       |
 |--|--|--|--|

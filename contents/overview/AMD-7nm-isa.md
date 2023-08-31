@@ -4,7 +4,7 @@ AMD Vega 指令集架构（或者 GCN 5）的 GPU 大概长下图这样。下面
 
 ![gcn-vega-7nm-arch.svg](images/gcn-vega-7nm-arch.svg)
 
-(原图: https://rocmdocs.amd.com/en/latest/GCN_ISA_Manuals/testdocbook.html#introduction)
+(原图: https://raw.githubusercontent.com/RadeonOpenCompute/ROCm_Documentation/8bb172b33e56d01deddb4f4c13f1d1f9add0db33/GCN_ISA_Manuals/fig_1_1_vega.png)
 
 **注: 如无特殊说明或特殊修饰(如"英伟达 GPU")，本页中的 GPU 均指 AMD Vega 架构的 GPU。**
 
@@ -113,7 +113,7 @@ SIMD 即我们常说的单指令多数据流，这里指 GPU 中具有该功能�
 在 HIP 线程执行时，64 个线程（或者叫 ***work-items*** ）被组成一捆在 SIMD 上执行（这64个线程不可分散到多个 SIMD上）。可是问题是，SIMD 上面只有 16 个乘法器，如何执行这 64 个线程呢？
 我们假设某条指令执行需要一个 cycle，那么 64 个线程需要 4 个 cycle 才能都执行完这条指令。实际上，也是这样的，一次让 16 个线程执行，然后下 16 个线程，分4批才能执行完。
 
-详细的解释见 [这里](https://rocmdocs.amd.com/en/latest/Programming_Guides/Opencl-optimization.html?highlight=wavefront#hiding-alu-and-memory-latency)。
+详细的解释见 [这里](https://github.com/RadeonOpenCompute/ROCm_Documentation/blob/8bb172b33e56d01deddb4f4c13f1d1f9add0db33/Programming_Guides/Opencl-optimization.rst#L2477)。
 
 > For most AMD GPUs, each compute unit can execute 16 VLIW instructions on each cycle. Each wavefront consists of 64 work-items; each compute unit executes a quarter-wavefront on each cycle, and the entire wavefront is executed in four consecutive cycles.
 >
@@ -123,7 +123,7 @@ SIMD 即我们常说的单指令多数据流，这里指 GPU 中具有该功能�
 下图给出了更细节的关于 VGPRs 和 SGPRs 的视图。
 
 ![](images/vega-isa-storage-overview.png)
-（图片来源：https://rocmdocs.amd.com/en/latest/_images/fig_2_1_vega.png）
+（图片来源：https://raw.githubusercontent.com/RadeonOpenCompute/ROCm_Documentation/8bb172b33e56d01deddb4f4c13f1d1f9add0db33/GCN_ISA_Manuals/fig_2_1_vega.png）
 
 上面说了，64 个线程组成一个 wavefront 在一个SIMD 上面执行，
 所以，这 64 个线程都会有属于自己的向量通用寄存器。上图就很直观地将 VGPRs 分成 64 组，每组 64 个，每个寄存器大小是 32 bit 的。整个 SIMD 上，总向量通用寄存器的大小为 $256 \times 64 \times 32/8=64$ KiB。
@@ -147,7 +147,7 @@ SIMD 即我们常说的单指令多数据流，这里指 GPU 中具有该功能�
 - VGPRs 必须以 4 个 dwords (一个 dword 即 32位，一个寄存器大小) 为单位申请。
 
 详细的解释见[AMD 的技术手册](
-https://rocmdocs.amd.com/en/latest/GCN_ISA_Manuals/testdocbook.html#sgpr-allocation-and-storage)。
+https://github.com/RadeonOpenCompute/ROCm_Documentation/blob/8bb172b33e56d01deddb4f4c13f1d1f9add0db33/GCN_ISA_Manuals/testdocbook.rst#sgpr-allocation-and-storage)。
 
 ### L1 cache
 L1 cache 是位于 CU 中的。不同的是，L2 cache 是位于 CU 外面的，所有 CU 共享 L2 cache。而 L1 cache 是 CU “私有”的。
